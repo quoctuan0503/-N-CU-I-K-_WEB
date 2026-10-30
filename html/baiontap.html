@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>baitapCK</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-4.0.0.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <style>
+        .err-msg{
+            color: red;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row my-2">
+            <div class="col-12">
+                <img src="../img/banner-4.jpg" alt="banner" class="w-100">
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <ul class="nav bg-light border-top border-bottom px-3">
+                    <li class="nav-item"><a href="#" class="nav-link active" >Trang chủ</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-primary" id="btnDangKy" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modalId">Đăng ký</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Trợ giúp</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered align-middle" id="myTable">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Mã học viên</th>
+                                <th scope="col">Họ tên</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Tiền dịch vụ</th>
+                                <th scope="col">Tiền đồ dùng</th>
+                                <th scope="col">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>123456789</td>
+                                <td>Trần Anh</td>
+                                <td>hongquan@iuh.edu.vn</td>
+                                <td>30000</td>
+                                <td>10000</td>
+                                <td>40000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row m-0 border-top p-3 bg-light text-center">
+            <div class="col-12">
+                <p class="m-0"><strong>Mã sinh viên:</strong> 24740451 | <strong>Họ tên:</strong> Nguyễn Văn A | <strong>Phòng thi:</strong> A1.01</p>
+            </div>
+        </div>
+    </div>
+    <!--Modal-->
+    <!-- Modal trigger button -->
+    
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+    <div
+        class="modal fade"
+        id="modalId"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+    >
+        <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        Thông Tin Thanh Toán
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTT">
+                        <div class="row mb-3 ">
+                            <label class="col-sm-3 col-form-label">Mã học viên:</label>
+                            <div class="col-sm-9">
+                                <input type="text"  id="mhv" class="form-control" placeholder="123456789" onblur="ktmaHV();">
+                                <span class="err-msg" id="er1">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Họ tên:</label>
+                            <div class="col-sm-9">
+                                <input type="text"  id="ht" class="form-control" placeholder="Tran Thu Trang" onblur="ktht();">
+                                <span class="err-msg" id="er2">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email"  id="mail" class="form-control" placeholder="anhtran@gmail.com" onblur="ktemail();">
+                                <span class="err-msg" id="er3">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Dịch vụ:</label>
+                            <div class="col-sm-9">
+                                <select id="er4" class="form-select" onchange="tinhDichVu();">
+                                    <option value="0">Chọn dịch vụ</option>
+                                    <option value="30000">Trượt ván</option>
+                                    <option value="10000">bơi</option>
+                                    <option value="130000">moto nước</option>
+                                </select> 
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Giá tiền:</label>
+                            <div class="col-sm-9">
+                                <input type="text"  id="er5" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Đồ dùng:</label>
+                            <div class="col-sm-9">
+                                <div class="form-check">
+                                    <input class="form-check-input chkDoDung" type="checkbox" value="20000" id="chkAoQuan" onchange="tinhTienDoDung();">
+                                    <label class="form-check-label" for="chkAoQuan">Áo quần bơi</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="chkPhao" value="10000" class="form-check-input chkDoDung" onchange="tinhTienDoDung();">
+                                    <label for="chkPhao" class="form-check-label">Phao</label>
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" id="chkmoTonc" value="700000" class="form-check-input chkDoDung" onchange="tinhTienDoDung();">
+                                    <label for="chkmoTonc" class="form-check-label">Moto nước</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Tiền đồ dùng:</label>
+                            <div class="col-sm-9">
+                                <input type="text"  id="er6" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Tổng tiền:</label>
+                            <div class="col-sm-9">
+                                <input type="text"  id="er7" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer d-flex flex-column">
+                    <button type="button" class="btn btn-success w-100 mb-2" data-bs-dismiss="modal" onclick="ThanhToan();">
+                        Thanh Toán
+                    </button>
+                    <button type="button" class="btn btn-danger w-100 m-0">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Optional: Place to the bottom of scripts -->
+    <script>
+        const myModal = new bootstrap.Modal(
+            document.getElementById("modalId"),
+            options,
+        );
+        function ktmaHV(){
+            var val = document.getElementById("er1").value;
+            var er = document.getElementById("er1");
+            var reg = /^\d{9}$/;
+            if (reg.test(val)) {
+                document.getElementById("mhv").innerHTML="*";
+                er.style.color = "green";
+                return true;
+            } else {
+                document.getElementById("mhv").innerHTML="Mã phải gồm 9 ký tự số";
+                er.style.color = "red";
+                return false;
+            }
+        }
+        function ktht(){
+            var tenHt = document.getElementById("er2").value;
+            var ten = /^[A-Z][a-z]+(\s[A-Z][a-z]+)+$/;
+            var er = document.getElementById("er2");
+            if (ten.test(tenHt)){
+                document.getElementById("ht").innerHTML="*";
+                er.style.color = "green";                
+                return true;
+            } else {
+                document.getElementById("ht").innerHTML="ít nhất 2 từ và phải viết hoa";
+                er.style.color = "red";
+                return false;
+            }
+        }
+        function ktemail(){
+            var email = document.getElementById("er3").value;
+            var maill = /^[a-zA-Z][a-zA-Z0-9_-]{2,}@iuh\.edu\.vn$/;
+            var er = document.getElementById("er3");
+            if (maill.test(email)){
+                document.getElementById("mail").innerHTML="*";
+                return true;
+            } else {
+                document.getElementById("mail").innerHTML="Email đúng mẫu name_email@iuh.edu.vn";
+                return false;
+            }
+        }
+        function tinhDichVu(){
+            var gia = document.getElementById("er4").value;
+            document.getElementById("er5").value = gia;
+            tinhTongtien();
+        }
+        function tinhTienDoDung(){
+            var list = document.getElementById("chkDoDung");
+            var tongTienDoDung = 0;
+            for (var i = 0; i < list.length; i++){
+                if(list[i].checked){
+                    tongTienDoDung += parseInt(list[i].value);
+                }
+            }
+            document.getElementById("er6").value = tongTienDoDung;
+            tinhTongtien();
+        }
+        function tinhTongtien(){
+            var giaDV = parseInt(document.getElementById("er5").value) || 0;
+            var tienDoDung = parseInt(document.getElementById("er6").value) || 0;
+            document.getElementById("er7").value = giaDV + tienDoDung;
+        }
+        function ThanhToan(){
+            if (ktmaHV() && ktht() && ktemail()){
+                var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+                var stt = table.rows.length + 1;
+
+                var maHV = document.getElementById("mhv").value;
+                var hoTen = document.getElementById("ht").value;
+                var email = document.getElementById("mail").value;
+                var giaDV = document.getElementById("er5").value;
+                var tienDoDung = document.getElementById("er6").value;
+                var tongTien = document.getElementById("er7").value;
+
+                var row = table.insertRow();
+                row.insertCell(0).innerHTML = stt;
+                row.insertCell(1).innerHTML = maHV;
+                row.insertCell(2).innerHTML = hoTen;
+                row.insertCell(3).innerHTML = email;
+                row.insertCell(4).innerHTML = giaDV;
+                row.insertCell(5).innerHTML = tienDoDung;
+                row.insertCell(6).innerHTML = tongTien;
+
+                // Reset form
+                document.getElementById("frmThanhToan").reset();
+                document.getElementById("txtGiaDV").value = "0";
+                document.getElementById("txtTienDoDung").value = "0";
+                document.getElementById("txtTongTien").value = "0";
+
+                // Đóng Modal có id="modalId"
+                var modalEl = document.getElementById("modalId");
+                var modal = bootstrap.Modal.getInstance(modalEl);
+                modal.hide();
+            }
+        }
+    </script>
+    
+</body>
+</html>

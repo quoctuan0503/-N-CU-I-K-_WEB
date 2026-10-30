@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-4.0.0.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <style>
+        .er-msg {
+            font-size: 0.85rem;
+            display: block;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <img src="../img/sach.jpg.png" alt="" class="w-100">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav">
+                    <li class="nav-item"><a href="#" class="nav-link">Trang chủ</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalId">Nhập sách</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-bordered align-middle text-center" id="myTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">STT</th>
+                            <th scope="col">Mã sách</th>
+                            <th scope="col">Hình minh họa</th>
+                            <th scope="col">Ngày nhập</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">Nhà xuất bản</th>
+                            <th scope="col">Chiết khấu</th>
+                            <th scope="col">Thể loại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>123-25-ADS</td>
+                            <td><img src="../img/sach1.jpg" alt="" style="width: 50px; height: 70px; object-fit: cover;"></td>
+                            <td>2026-11-01</td>
+                            <td>25</td>
+                            <td>Nhà xuất bản Kim Đồng</td>
+                            <td>20%</td>
+                            <td>Văn Học</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row m-0 border-top p-3 text-center border-bottom">
+            <div class="col-12">
+                <p class="p-0"><strong>MSSV: </strong> 24740451 | <strong>Họ tên: </strong> Nguyễn Vương Quốc Tuấn | <strong>Lớp:</strong> DHHTTT20B</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Body -->
+    <div
+        class="modal fade"
+        id="modalId"
+        tabindex="-1"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        role="dialog"
+        aria-labelledby="modalTitleId"
+        aria-hidden="true"
+    >
+        <div
+            class="modal-dialog modal-dialog-centered modal-lg"
+            role="document"
+        >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitleId">
+                        PHIẾU NHẬP KHO TRỰC TUYẾN
+                    </h5>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmTT">
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Mã Sách</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="ms" class="form-control" placeholder="123-25-KD" onblur="ktMaSach();">
+                                <span class="er-msg" id="e1">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Hình minh họa</label>
+                            <div class="col-sm-9">
+                                <input type="file" id="hmh" class="form-control" onchange="ktHinh();">
+                                <span class="er-msg" id="e2">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Ngày nhập</label>
+                            <div class="col-sm-9">
+                                <input type="date" id="nn" class="form-control" onblur="ktNgay();">
+                                <span class="er-msg" id="e3">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Số lượng</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="sl" class="form-control" placeholder="Nhập số lượng" onblur="ktSoLuong();">
+                                <span class="er-msg" id="e4">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Nhà xuất bản</label>
+                            <div class="col-sm-9">
+                                <select id="nxb" class="form-select" onchange="chonNXB();">
+                                    <option value="0">Chọn nhà xuất bản</option>
+                                    <option value="20%">Nhà xuất bản Kim Đồng</option>
+                                    <option value="25%">Nhà xuất bản Trẻ</option>
+                                    <option value="30%">Nhà xuất bản Thế Giới Mới</option>
+                                    <option value="35%">Nhà xuất bản Tri thức</option>
+                                </select>                  
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Chiết khấu</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="ck" class="form-control" value="0%" disabled>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-3 col-form-label">Thể loại</label>
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="chkVH" class="form-check-input chkTL" value="Văn Học">
+                                    <label for="chkVH" class="form-check-label">Văn Học</label>
+                                </div> 
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="chkKH" class="form-check-input chkTL" value="Khoa Học">
+                                    <label for="chkKH" class="form-check-label">Khoa Học</label>
+                                </div>            
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" id="chkTN" class="form-check-input chkTL" value="Thiếu Nhi">
+                                    <label for="chkTN" class="form-check-label">Thiếu Nhi</label>
+                                </div>    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3 ">
+                                <button type="button" class="btn btn-primary" onclick="nhapKho();">Nhập kho</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        data-bs-dismiss="modal"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function ktMaSach() {
+            var ma = document.getElementById("ms").value.trim();
+            var mSach = document.getElementById("e1"); 
+            var mS = /^\d{3}-\d{2}-[A-Z]{2}$/;
+            if (mS.test(ma)) {
+                mSach.innerHTML = "ok";
+                mSach.style.color = 'green';
+                return true;
+            } else {
+                mSach.innerHTML = "Đúng mẫu XXX-XX-XX";
+                mSach.style.color = 'red';
+                return false;
+            }
+        }
+
+        function ktHinh() {
+            var hinh = document.getElementById("hmh").value;
+            var h = document.getElementById("e2");
+            var hih = /\.(jpg|png|gif)$/i;
+            if (hinh !== "" && hih.test(hinh)) {
+                h.innerHTML = "ok";
+                h.style.color = 'green';
+                return true;
+            } else {
+                h.innerHTML = "Chọn file đúng dạng .jpg, .png, .gif";
+                h.style.color = 'red';
+                return false;
+            }
+        }
+
+        function ktNgay() {
+            var ngay = document.getElementById("nn").value;
+            var n = document.getElementById("e3");
+            
+            if (ngay === "") {
+                n.innerHTML = 'Vui lòng chọn ngày!';
+                n.style.color = 'red';
+                return false;
+            }
+
+            var ngayNhap = new Date(ngay);
+            var ngayHT = new Date();
+            ngayHT.setHours(0, 0, 0, 0);
+
+            if (ngayNhap > ngayHT) {
+                n.innerHTML = "ok";
+                n.style.color = 'green';
+                return true;
+            } else {
+                n.innerHTML = 'Ngày nhập phải sau ngày hiện tại!';
+                n.style.color = 'red';
+                return false;
+            }
+        }
+
+        function ktSoLuong() {
+            var soLuong = document.getElementById("sl").value.trim();
+            var soL = document.getElementById("e4");
+            var sL = parseInt(soLuong);
+            
+            if (!isNaN(sL) && sL > 0 && sL < 1000) {
+                soL.innerHTML = "ok";
+                soL.style.color = 'green';
+                return true;
+            } else {
+                soL.innerHTML = "Số lượng phải lớn hơn 0 và nhỏ hơn 1000!";
+                soL.style.color = 'red';
+                return false;
+            }
+        }
+
+        function chonNXB() {
+            var NXB = document.getElementById("nxb").value;
+            document.getElementById("ck").value = NXB;
+        }
+
+        function ktTL() {
+            var list = document.getElementsByClassName("chkTL");
+            var res = [];
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].checked) {
+                    res.push(list[i].value);
+                }
+            }
+            return res.length > 0 ? res.join(", ") : "Chưa chọn";
+        }
+
+        function nhapKho() {
+            var isMa = ktMaSach();
+            var isHinh = ktHinh();
+            var isNgay = ktNgay();
+            var isSL = ktSoLuong();
+
+            if (isMa && isHinh && isNgay && isSL) {
+                var table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+                var stt = table.rows.length + 1;
+
+                var maSach = document.getElementById("ms").value.trim();
+                
+                var hinhFull = document.getElementById("hmh").value;
+                var tenHinh = hinhFull.substring(hinhFull.lastIndexOf('\\') + 1);
+                
+                var ngayNhap = document.getElementById("nn").value;
+                var soLuong = document.getElementById("sl").value.trim();
+                
+                var cbo = document.getElementById("nxb");
+                var tenNXB = cbo.options[cbo.selectedIndex].text;
+                var chietKhau = document.getElementById("ck").value;
+                var theLoai = ktTL();
+
+                var row = table.insertRow();
+                row.insertCell(0).innerHTML = stt;
+                row.insertCell(1).innerHTML = maSach;
+                row.insertCell(2).innerHTML = `<img src="../img/${tenHinh}" alt="${tenHinh}" style="width: 50px; height: 70px; object-fit: cover;">`;
+                row.insertCell(3).innerHTML = ngayNhap;
+                row.insertCell(4).innerHTML = soLuong;
+                row.insertCell(5).innerHTML = tenNXB;
+                row.insertCell(6).innerHTML = chietKhau;
+                row.insertCell(7).innerHTML = theLoai;
+
+                // Reset form
+                document.getElementById("frmTT").reset();
+                document.getElementById("ck").value = "0%";
+                document.getElementById("e1").innerHTML = "*";
+                document.getElementById("e2").innerHTML = "*";
+                document.getElementById("e3").innerHTML = "*";
+                document.getElementById("e4").innerHTML = "*";
+
+                // Đóng Modal
+                var modalEl = document.getElementById("modalId");
+                var modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+                modal.hide();
+            }
+        }
+    </script>
+</body>
+</html>

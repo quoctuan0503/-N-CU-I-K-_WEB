@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai1</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/jquery-4.0.0.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container my-3">
+        <div class="row mb-3">
+            <div class="col-12">
+                <img src="../img/website.png" alt="Banner Học Kỳ Quân Đội" class="w-100">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12">
+                <ul class="nav border-bottom pb-2">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-secondary fw-bold">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#modalHocVien">
+                            Đăng ký
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-12 text-center">
+                <h4 class="fw-bold text-uppercase">DANH SÁCH HỌC VIÊN ĐĂNG KÝ</h4>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table table-bordered align-middle" id="tblHocVien">
+                    <thead class="table-success text-center fw-bold">
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Giới tính</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
+                            <th>Địa chỉ</th>
+                            <th>Khóa học</th>
+                            <th>Học phí</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalHocVien" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content px-3 py-2">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title w-100 text-center fw-bold text-secondary fs-4" id="modalTitleId">
+                        THÔNG TIN HỌC VIÊN
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="frmHocVien" class="container-fluid">
+                        <div class="row mb-3 align-items-center">
+                            <label for="hoten" class="col-sm-3 text-sm-end fw-bold">Họ và tên</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="hoten" placeholder="Nguyễn Văn An">
+                                <span id="erHoTen" class="er-msg text-danger small">*</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label class="col-sm-3 text-sm-end fw-bold">Giới tính</label>
+                            <div class="col-sm-9">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="gtNam" value="Nam" checked>
+                                    <label class="form-check-label" for="gtNam">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gioitinh" id="gtNu" value="Nữ">
+                                    <label class="form-check-label" for="gtNu">Nữ</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="sdt" class="col-sm-3 text-sm-end fw-bold">Số điện thoại</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="sdt" placeholder="090-123456">
+                                <span id="erSDT" class="er-msg text-danger small">* (Định dạng: XXX-YYYYYY)</span>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="ngaysinh" class="col-sm-3 text-sm-end fw-bold">Ngày sinh</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="ngaysinh">
+                                <span id="erNgaySinh" class="er-msg text-danger small">* (Từ 15 đến 18 tuổi)</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <label for="diachi" class="col-sm-3 text-sm-end fw-bold">Địa chỉ</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="diachi" placeholder="123 Nguyễn Du, P5, Gò Vấp">
+                                <span id="erDiaChi" class="er-msg text-danger small">*</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <label for="khoahoc" class="col-sm-3 text-sm-end fw-bold">Khóa học</label>
+                            <div class="col-sm-9">
+                                <select class="form-select" id="khoahoc">
+                                    <option value="Khóa 2 tuần" data-gia="5000000">Khóa 2 tuần</option>
+                                    <option value="Khóa 4 tuần" data-gia="8000000">Khóa 4 tuần</option>
+                                    <option value="Khóa 6 tuần" data-gia="9000000">Khóa 6 tuần</option>
+                                </select>
+                                <span id="erKhoaHoc" class="er-msg text-success small">ok</span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 align-items-center">
+                            <label for="hocphi" class="col-sm-3 text-sm-end fw-bold">Học phí</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control bg-light" id="hocphi" value="5,000,000" readonly>
+                            </div>
+                        </div>
+                        <div class="row mb-3 align-items-center">
+                            <label for="anh" class="col-sm-3 text-sm-end fw-bold">Ảnh đại diện</label>
+                            <div class="col-sm-9">
+                                <input type="file" class="form-control" id="anh">
+                                <span id="erAnh" class="er-msg text-danger small">*</span>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <button type="button" class="btn btn-success w-100 py-2 fs-5" id="btnSave">
+                                    Lưu
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Xử Lý Validation & Thêm Dữ Liệu -->
+    <script>
+        $(document).ready(function () {
+            let stt = 1; 
+
+            function thongBao(inputSelector, errSelector, hopLe, msgLoi = "") {
+                if (hopLe) {
+                    $(inputSelector).removeClass("is-invalid").addClass("is-valid");
+                    $(errSelector).removeClass("text-danger").addClass("text-success").text("ok");
+                    return true;
+                } else {
+                    $(inputSelector).removeClass("is-valid").addClass("is-invalid");
+                    $(errSelector).removeClass("text-success").addClass("text-danger").text(msgLoi);
+                    return false;
+                }
+            }
+
+            // 1. Kiểm tra Họ và tên:
+            function ktHoTen() {
+                let val = $("#hoten").val().trim();
+                let regex = /^([A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*\s)+[A-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪỬỮỰỲỴÝỶỸ][a-zàáâãèéêìíòóôõùúăđĩũơưăạảấầẩẫậắằẳẵặẹẻẽềềểễệỉịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ]*$/;
+                if (val === "") {
+                    return thongBao("#hoten", "#erHoTen", false, "Họ tên không được bỏ trống (*)");
+                }
+                if (!regex.test(val)) {
+                    return thongBao("#hoten", "#erHoTen", false, "Họ tên phải từ 2 từ trở lên và viết hoa chữ cái đầu mỗi từ");
+                }
+                return thongBao("#hoten", "#erHoTen", true);
+            }
+
+            // 2. Kiểm tra Số điện thoại: XXX-YYYYYY
+            function ktSDT() {
+                let val = $("#sdt").val().trim();
+                let regex = /^\d{3}-\d{6}$/;
+                if (val === "") {
+                    return thongBao("#sdt", "#erSDT", false, "Số điện thoại không được bỏ trống (*)");
+                }
+                if (!regex.test(val)) {
+                    return thongBao("#sdt", "#erSDT", false, "Đúng định dạng: XXX-YYYYYY (Ví dụ: 090-123456)");
+                }
+                return thongBao("#sdt", "#erSDT", true);
+            }
+
+            // 3. Kiểm tra Ngày sinh: Tuổi từ 15 đến 18
+            function ktNgaySinh() {
+                let val = $("#ngaysinh").val();
+                if (val === "") {
+                    return thongBao("#ngaysinh", "#erNgaySinh", false, "Ngày sinh không được bỏ trống (*)");
+                }
+                let ngaySinh = new Date(val);
+                let homNay = new Date();
+                
+                let tuoi = homNay.getFullYear() - ngaySinh.getFullYear();
+                let m = homNay.getMonth() - ngaySinh.getMonth();
+                if (m < 0 || (m === 0 && homNay.getDate() < ngaySinh.getDate())) {
+                    tuoi--;
+                }
+
+                if (tuoi < 15 || tuoi > 18) {
+                    return thongBao("#ngaysinh", "#erNgaySinh", false, "Tuổi học viên phải từ 15 đến 18 tuổi");
+                }
+                return thongBao("#ngaysinh", "#erNgaySinh", true);
+            }
+
+            // 4. Kiểm tra Địa chỉ
+            function ktDiaChi() {
+                let val = $("#diachi").val().trim();
+                if (val === "") {
+                    return thongBao("#diachi", "#erDiaChi", false, "Địa chỉ không được bỏ trống (*)");
+                }
+                return thongBao("#diachi", "#erDiaChi", true);
+            }
+
+            // 5. Kiểm tra Ảnh đại diện: .jpg, .png, .gif
+            function ktAnh() {
+                let val = $("#anh").val();
+                if (val === "") {
+                    return thongBao("#anh", "#erAnh", false, "Vui lòng chọn ảnh đại diện (*)");
+                }
+                let regex = /\.(jpg|png|gif)$/i;
+                if (!regex.test(val)) {
+                    return thongBao("#anh", "#erAnh", false, "Ảnh phải thuộc đuôi .jpg, .png hoặc .gif");
+                }
+                return thongBao("#anh", "#erAnh", true);
+            }
+
+            // Sự kiện tự động nhảy Học phí khi đổi Khóa học
+            $("#khoahoc").change(function () {
+                let gia = $(this).find(":selected").data("gia");
+                $("#hocphi").val(Number(gia).toLocaleString('vi-VN'));
+            });
+
+            // Gắn sự kiện blur / change kiểm tra
+            $("#hoten").blur(ktHoTen);
+            $("#sdt").blur(ktSDT);
+            $("#ngaysinh").blur(ktNgaySinh);
+            $("#diachi").blur(ktDiaChi);
+            $("#anh").change(ktAnh);
+
+            // Sự kiện Click Lưu
+            $("#btnSave").click(function () {
+                if (ktHoTen() && ktSDT() && ktNgaySinh() && ktDiaChi() && ktAnh()) {
+                    let hoten = $("#hoten").val().trim();
+                    let gioitinh = $("input[name='gioitinh']:checked").val();
+                    let sdt = $("#sdt").val().trim();
+                    let ngaysinh = $("#ngaysinh").val();
+                    let diachi = $("#diachi").val().trim();
+                    let khoahoc = $("#khoahoc").val();
+                    let hocphi = $("#hocphi").val();
+
+                    let parts = ngaysinh.split("-");
+                    let ngayHienThi = `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+                    let newRow = `<tr>
+                        <td class="text-center">${stt++}</td>
+                        <td>${hoten}</td>
+                        <td class="text-center">${gioitinh}</td>
+                        <td class="text-center">${sdt}</td>
+                        <td class="text-center">${ngayHienThi}</td>
+                        <td>${diachi}</td>
+                        <td>${khoahoc}</td>
+                        <td class="text-end">${hocphi}</td>
+                    </tr>`;
+
+                    $("#tblHocVien tbody").append(newRow);
+
+                    $("#frmHocVien")[0].reset();
+                    $("#frmHocVien input, #frmHocVien select").removeClass("is-valid is-invalid");
+                    $(".er-msg").removeClass("text-success").addClass("text-danger").text("*");
+                    $("#erKhoaHoc").removeClass("text-danger").addClass("text-success").text("ok");
+                    $("#hocphi").val("5,000,000");
+
+                    let modalEl = document.getElementById("modalHocVien");
+                    bootstrap.Modal.getInstance(modalEl).hide();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
